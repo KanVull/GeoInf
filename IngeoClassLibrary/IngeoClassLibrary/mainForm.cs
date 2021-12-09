@@ -28,6 +28,26 @@ namespace IngeoClassLibrary
                 ingeoControl.GetSelectObjectId(out status);
             MessageBox.Show(status);
         }
+        // Очистка данных
+        private void clearDijkstraData()
+        {
+            textBoxPath.Text = "";
+            listBoxCoordinates.Items.Clear();
+            listBoxIDs.Items.Clear();
+            listBoxLength.Items.Clear();
+        }
+        // Обработчик кнопки: Алгоритм Дейкстры. 
+        // Запуск алгоритма и заполнение списков
+        private void buttonDijkstra_Click(object sender, EventArgs e)
+        {
+            clearDijkstraData();
+            textBoxPath.Text = ShortestPath.run(ingeoControl);
+            listBoxCoordinates.Items.AddRange
+                 (ShortestPath.coordinates.ToArray());
+            listBoxIDs.Items.AddRange(ShortestPath.ids.ToArray());
+            listBoxLength.Items.AddRange(ShortestPath.length.ToArray());
+        }
+
     }
 
 }

@@ -52,6 +52,7 @@
       <DependentUpon>mainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShortestPath.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Ingeo">

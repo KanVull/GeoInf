@@ -7,15 +7,53 @@ using System.Threading.Tasks;
 
 namespace IngeoClassLibrary
 {
+    struct DoublePoint
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        // Конструктор
+        public DoublePoint(double x, double y) : this()
+        {
+            X = x;
+            Y = y;
+        }
+        // Метод проверки на равенство точек
+        public bool Equals(DoublePoint point)
+        {
+            return (point.X == this.X && point.Y == this.Y) ? true : false;
+        }
+    }
+    // Структура «Линия» с вещественными точками
+    struct DoubleLine
+    {
+        public DoublePoint P1 { get; set; }
+        public DoublePoint P2 { get; set; }
+        // Конструктор (передаем точки)
+        public DoubleLine(DoublePoint p1, DoublePoint p2) : this()
+        {
+            P1 = p1;
+            P2 = p2;
+        }
+        // Конструктор (передаем координаты точек)
+        public DoubleLine(double x1, double y1, double x2, double y2) : this()
+        {
+            P1 = new DoublePoint(x1, y1);
+            P2 = new DoublePoint(x2, y2);
+        }
+        // Вычисление длины линии
+        public double getLength()
+        {
+            return Math.Sqrt(Math.Pow(P2.X - P1.X, 2) + Math.Pow(P2.Y - P1.Y, 2));
+        }
+    }
+
+
     public class IngeoControl
     {
         public IIngeoApplication FApplication { get; private set; }
-
         public List<string> vectorMaps { get; private set; }
         public List<string> vectorMapsID { get; private set; }
-
         public IIngeoMapObjects mapObjects { get; private set; }
-
         public IngeoControl(IIngeoApplication app)
         {
             FApplication = app;
@@ -110,7 +148,6 @@ namespace IngeoClassLibrary
             }
             return id;
         }
-
         // Создание контура с указанием слоя и стиля
         public IIngeoContourPart createContour(string IDLayer, string IDStyle)
         {
