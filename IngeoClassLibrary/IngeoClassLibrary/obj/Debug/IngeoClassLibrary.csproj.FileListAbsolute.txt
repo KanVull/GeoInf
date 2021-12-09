@@ -7,3 +7,5 @@ C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibra
 C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.csproj.CoreCompileInputs.cache
 C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.dll
 C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.pdb
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.mainForm.resources
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.csproj.GenerateResource.cache
