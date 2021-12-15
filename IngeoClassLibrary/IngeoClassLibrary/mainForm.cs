@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Ingeo;
@@ -142,6 +143,57 @@ namespace IngeoClassLibrary
             {
                 MessageBox.Show(ex.Message + "\r\n\r\n" + ex.StackTrace, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+
+        List<string> visited = new List<string>();
+        private void addTouchedObjects(string id, string current_layer, string id_style_vertex)
+        {
+            IIngeoContour contour = ingeoControl.GetMapObjectFromID(id).Shapes[0].Contour;
+            IIngeoMapObjectsQuery query =  ingeoControl.FApplication.ActiveDb.MapObjects.QueryByContour(current_layer, contour, TIngeoContourRelation.incrTouched, TIngeoContourRelation.incrTouched);
+            visited.Add(id);
+
+            while (!query.EOF)
+            {
+                // Если мы не посещали этот объект - посещаем
+                if (!visited.Contains(query.ObjectID.ToString()))
+                {
+                    visited.Add(query.ObjectID);
+
+                    // если у объекта нужный стиль и объекта нет в списке
+                    if (ingeoControl.GetMapObjectFromID(query.ObjectID).Shapes[0].Style.ID == id_style_vertex)
+                        if (!listBoxObject.Items.Contains(query.ObjectID.ToString()))
+                            listBoxObject.Items.Add(query.ObjectID);
+                    // Рекурсивно вызываем функцию для возвращенных элементов
+                    addTouchedObjects(query.ObjectID, current_layer, id_style_vertex);
+                }
+                query.MoveNext();
+            }
+        }
+
+
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+            string status;
+            string idSelected = ingeoControl.GetSelectObjectId(out status);
+            textBoxStatus.Text = status;
+            if (idSelected == null) return;
+
+            // Очищаем списки перед вызовом функции
+            visited.Clear();
+            listBoxObject.Items.Clear();
+            string ID_STYLE_VERTEX = "0001000003FC";
+            string current_layer = ingeoControl.FApplication.ActiveProjectView.SelectedLayerView.Layer.ID;
+
+            // вызов рекурсивной функции
+            addTouchedObjects(idSelected, current_layer, ID_STYLE_VERTEX);
+
+        }
+
+        private void listBoxObject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ingeoControl.FApplication.Selection.DeselectAll();
+            ingeoControl.FApplication.Selection.Select(listBoxObject.SelectedItem.ToString(), 0);
         }
     }
 }

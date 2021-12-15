@@ -45,15 +45,19 @@ namespace IngeoClassLibrary
             this.listBoxCoordinates = new System.Windows.Forms.ListBox();
             this.buttonDijkstra = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txbLegalSquare = new System.Windows.Forms.TextBox();
-            this.txbFactSquare = new System.Windows.Forms.TextBox();
-            this.txbDeltaSquare = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txbStatus = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txbStatus = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txbDeltaSquare = new System.Windows.Forms.TextBox();
+            this.txbFactSquare = new System.Windows.Forms.TextBox();
+            this.txbLegalSquare = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonFind = new System.Windows.Forms.Button();
+            this.textBoxStatus = new System.Windows.Forms.TextBox();
+            this.listBoxObject = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -61,6 +65,7 @@ namespace IngeoClassLibrary
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonGetObjects
@@ -104,6 +109,7 @@ namespace IngeoClassLibrary
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -230,65 +236,15 @@ namespace IngeoClassLibrary
             this.tabPage3.Text = "Law";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // btnSave
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 54);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Registered area";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 85);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Actual area";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 115);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Area deviation";
-            // 
-            // txbLegalSquare
-            // 
-            this.txbLegalSquare.Location = new System.Drawing.Point(97, 47);
-            this.txbLegalSquare.Name = "txbLegalSquare";
-            this.txbLegalSquare.ReadOnly = true;
-            this.txbLegalSquare.Size = new System.Drawing.Size(361, 20);
-            this.txbLegalSquare.TabIndex = 3;
-            // 
-            // txbFactSquare
-            // 
-            this.txbFactSquare.Location = new System.Drawing.Point(97, 78);
-            this.txbFactSquare.Name = "txbFactSquare";
-            this.txbFactSquare.ReadOnly = true;
-            this.txbFactSquare.Size = new System.Drawing.Size(361, 20);
-            this.txbFactSquare.TabIndex = 4;
-            // 
-            // txbDeltaSquare
-            // 
-            this.txbDeltaSquare.Location = new System.Drawing.Point(97, 108);
-            this.txbDeltaSquare.Name = "txbDeltaSquare";
-            this.txbDeltaSquare.ReadOnly = true;
-            this.txbDeltaSquare.Size = new System.Drawing.Size(361, 20);
-            this.txbDeltaSquare.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 137);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Object status:";
+            this.btnSave.Location = new System.Drawing.Point(6, 254);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(452, 23);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Text = "Lagality of construction";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txbStatus
             // 
@@ -299,15 +255,105 @@ namespace IngeoClassLibrary
             this.txbStatus.Size = new System.Drawing.Size(452, 95);
             this.txbStatus.TabIndex = 7;
             // 
-            // btnSave
+            // label4
             // 
-            this.btnSave.Location = new System.Drawing.Point(6, 254);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(452, 23);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "Lagality of construction";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 137);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Object status:";
+            // 
+            // txbDeltaSquare
+            // 
+            this.txbDeltaSquare.Location = new System.Drawing.Point(97, 108);
+            this.txbDeltaSquare.Name = "txbDeltaSquare";
+            this.txbDeltaSquare.ReadOnly = true;
+            this.txbDeltaSquare.Size = new System.Drawing.Size(361, 20);
+            this.txbDeltaSquare.TabIndex = 5;
+            // 
+            // txbFactSquare
+            // 
+            this.txbFactSquare.Location = new System.Drawing.Point(97, 78);
+            this.txbFactSquare.Name = "txbFactSquare";
+            this.txbFactSquare.ReadOnly = true;
+            this.txbFactSquare.Size = new System.Drawing.Size(361, 20);
+            this.txbFactSquare.TabIndex = 4;
+            // 
+            // txbLegalSquare
+            // 
+            this.txbLegalSquare.Location = new System.Drawing.Point(97, 47);
+            this.txbLegalSquare.Name = "txbLegalSquare";
+            this.txbLegalSquare.ReadOnly = true;
+            this.txbLegalSquare.Size = new System.Drawing.Size(361, 20);
+            this.txbLegalSquare.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 115);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Area deviation";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Actual area";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Registered area";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.listBoxObject);
+            this.tabPage4.Controls.Add(this.textBoxStatus);
+            this.tabPage4.Controls.Add(this.buttonFind);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(464, 406);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Part 4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // buttonFind
+            // 
+            this.buttonFind.Location = new System.Drawing.Point(7, 7);
+            this.buttonFind.Name = "buttonFind";
+            this.buttonFind.Size = new System.Drawing.Size(451, 23);
+            this.buttonFind.TabIndex = 0;
+            this.buttonFind.Text = "Define";
+            this.buttonFind.UseVisualStyleBackColor = true;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            // 
+            // textBoxStatus
+            // 
+            this.textBoxStatus.Location = new System.Drawing.Point(7, 37);
+            this.textBoxStatus.Name = "textBoxStatus";
+            this.textBoxStatus.ReadOnly = true;
+            this.textBoxStatus.Size = new System.Drawing.Size(451, 20);
+            this.textBoxStatus.TabIndex = 1;
+            // 
+            // listBoxObject
+            // 
+            this.listBoxObject.FormattingEnabled = true;
+            this.listBoxObject.Location = new System.Drawing.Point(7, 64);
+            this.listBoxObject.Name = "listBoxObject";
+            this.listBoxObject.Size = new System.Drawing.Size(451, 329);
+            this.listBoxObject.TabIndex = 2;
+            this.listBoxObject.SelectedIndexChanged += new System.EventHandler(this.listBoxObject_SelectedIndexChanged);
             // 
             // mainForm
             // 
@@ -327,6 +373,8 @@ namespace IngeoClassLibrary
             this.groupBox1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -358,5 +406,9 @@ namespace IngeoClassLibrary
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.ListBox listBoxObject;
+        private System.Windows.Forms.TextBox textBoxStatus;
+        private System.Windows.Forms.Button buttonFind;
     }
 }
