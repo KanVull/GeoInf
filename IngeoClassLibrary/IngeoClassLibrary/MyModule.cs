@@ -9,6 +9,8 @@ namespace IngeoClassLibrary
     [ComVisible(true)]
     public class MyModule
     {
+        mainForm newForm; 
+
         public IIngeoApplication _fApplication;
 
         public void Init(IIngeoApplication app)
@@ -20,6 +22,12 @@ namespace IngeoClassLibrary
         {
             _fApplication = null;
         }
+        public void SelectionObjectsChange()
+        {
+            if (newForm != null)
+                newForm.UpdateData();
+        }
+
         // Метод отображения формы
         void ShowIngeoPopupForm(IIngeoApplication ingeo)
         {
@@ -27,7 +35,7 @@ namespace IngeoClassLibrary
                 MessageBox.Show("Модуль не инициализирован!");
             else
             {
-                var newForm = new mainForm(ingeo);
+                newForm = new mainForm(ingeo);
                 newForm.Show(new IngeoMainWindowHandle(ingeo));
             }
         }

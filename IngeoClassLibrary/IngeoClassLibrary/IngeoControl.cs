@@ -157,6 +157,54 @@ namespace IngeoClassLibrary
             aContour.Closed = false;
             return aContour;
         }
+
+        public String ObjectToString(String object_id)
+        {
+            IIngeoMapObject map_obj = FApplication.ActiveDb.MapObjects.GetObject(object_id);
+            String object_coords_str = "";
+            if (map_obj.Shapes.Count > 0 && map_obj.Shapes[0].Contour.Count > 0)
+            {
+                for (int i = 0;
+                i < map_obj.Shapes[0].Contour[0].VertexCount; i++)
+                {
+                    double x, y, convex;
+                    map_obj.Shapes[0].Contour[0].GetVertex(i, out x, out y, out convex);
+                    if (object_coords_str != "")
+                        object_coords_str += "|";
+                    object_coords_str += x.ToString() + ";" + y.ToString() + ";" + convex.ToString();
+                }
+            }
+            return object_coords_str;
+        }
+
+        public String CreateObjectFromString(String object_coords_str, String layer_id, String style_id)
+        {
+            if (object_coords_str == "") return "";
+
+            //создание объекта
+            IIngeoMapObjects map_objects = FApplication.ActiveDb.MapObjects;
+            map_objects.TransactionName = "t1";
+            IIngeoMapObject new_obj = map_objects.AddObject(layer_id);
+            IIngeoShape new_shape = new_obj.Shapes.Insert(0, style_id);
+            IIngeoContourPart cnt_part = new_shape.Contour.Insert(0);
+
+            //добавление вершин в объект
+            String[] coords_parts = object_coords_str.Split(new char[] { '|' });
+            foreach (String vertex_data in coords_parts)
+            {
+                String[] vertex_data_values = vertex_data.Split(new char[] { ';' });
+                double x = Convert.ToDouble(vertex_data_values[0]);
+                double y = Convert.ToDouble(vertex_data_values[1]);
+                double convex = Convert.ToDouble(vertex_data_values[2]);
+                cnt_part.InsertVertex(cnt_part.VertexCount, x, y, convex);
+            }
+
+            cnt_part.Closed = true;
+            map_objects.UpdateChanges();
+
+            return new_obj.ID;
+        }
+
         // Применение изменений к карте
         public void applyChanges()
         {

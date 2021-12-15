@@ -9,3 +9,9 @@ C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibra
 C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.pdb
 C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.mainForm.resources
 C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.csproj.GenerateResource.cache
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\bin\Debug\FirebirdSql.Data.FirebirdClient.dll
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Инст\GeoInf\IngeoClassLibrary\IngeoClassLibrary\obj\Debug\IngeoClassLibrary.csproj.CopyComplete

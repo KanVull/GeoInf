@@ -16,13 +16,12 @@ namespace IngeoClassLibrary
         public Database()
         {
             //подключение к БД
-            String db_path = Path.GetDirectoryName(
-             Assembly.GetCallingAssembly().Location) + "\\database.fdb";
-            FbConnectionStringBuilder cs =
-                        new FbConnectionStringBuilder();
+            String db_path = "C:\\database.fdb";
+            FbConnectionStringBuilder cs = new FbConnectionStringBuilder();
             cs.Database = db_path;
+            cs.DataSource = "localhost";
             cs.UserID = "SYSDBA";
-            cs.Password = "master";
+            cs.Password = "masterkey";
             cs.Charset = "NONE";
             DbConnection = new FbConnection(cs.ToString());
             DbConnection.Open();
@@ -48,15 +47,13 @@ namespace IngeoClassLibrary
         {
             using (FbCommand cmd = DbConnection.CreateCommand())
             {
-                cmd.CommandText =
-                  "select * from OBJECT_DATA where OBJECT_ID=?";
+                cmd.CommandText = "select * from OBJECT_DATA where OBJECT_ID=?";
                 cmd.Parameters.AddWithValue("ID", object_id);
                 using (FbDataReader rdr = cmd.ExecuteReader())
                 {
                     if (rdr.Read())
                     {
-                        object_square =
-                          Convert.ToDecimal(rdr["OBJECT_SQUARE"]);
+                        object_square = Convert.ToDecimal(rdr["OBJECT_SQUARE"]);
                         object_coords = rdr["OBJECT_COORDS"].ToString();
                         return true;
                     }
@@ -71,12 +68,10 @@ namespace IngeoClassLibrary
         }
 
         // Сохранение информации по объекту
-        public void SaveObjectData(String object_id,
-                IngeoControl ingeoControl)
+        public void SaveObjectData(String object_id, IngeoControl ingeoControl)
         {
             //получение списка вершин объекта
-            IIngeoMapObject map_obj = ingeoControl.FApplication.ActiveDb.
-                        MapObjects.GetObject(object_id);
+            IIngeoMapObject map_obj = ingeoControl.FApplication.ActiveDb.MapObjects.GetObject(object_id);
             String object_coords_str = ingeoControl.ObjectToString(object_id);
 
             //создание пустой записи по объекту, если он не существует
@@ -90,8 +85,7 @@ namespace IngeoClassLibrary
                 {
                     using (FbCommand cmd_ins = DbConnection.CreateCommand())
                     {
-                        cmd_ins.CommandText =
-                          "insert into OBJECT_DATA (OBJECT_ID) values (?)";
+                        cmd_ins.CommandText = "insert into OBJECT_DATA (OBJECT_ID) values (?)";
                         cmd_ins.Parameters.AddWithValue("ID", object_id);
                         cmd_ins.ExecuteNonQuery();
                     }
